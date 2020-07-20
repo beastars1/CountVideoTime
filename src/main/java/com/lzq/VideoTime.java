@@ -13,7 +13,7 @@ import java.util.List;
  * @author beastars
  */
 public class VideoTime {
-    private static ArrayList<File> videos = new ArrayList<File>();
+    private ArrayList<File> videos = new ArrayList<File>();
     private static final String[] FORMAT = {"avi", "mp4", "flv"}; // 视频后缀
 
     /**
@@ -50,6 +50,7 @@ public class VideoTime {
      * @param path 本地路径
      */
     public void getVideoTime(String path) {
+        videos.clear();
         getVideos(path);
 
         Encoder encoder = new Encoder();
@@ -64,6 +65,11 @@ public class VideoTime {
             e.printStackTrace();
         }
 
+        System.out.println(path);
+        formatTime(time);
+    }
+
+    private void formatTime(Long time) {
         int hour = (int) (time / 3600);
         int minute = (int) (time % 3600) / 60;
         int second = (int) (time - hour * 3600 - minute * 60);
