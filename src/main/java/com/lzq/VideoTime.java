@@ -13,14 +13,14 @@ import java.util.List;
  * @author beastars
  */
 public class VideoTime {
-    private ArrayList<File> videos = new ArrayList<File>();
+    private static ArrayList<File> videos = new ArrayList<File>();
     private static final String[] FORMAT = {"avi", "mp4", "flv"}; // 视频后缀
 
     /**
      * 统计视频
      * @param path 本地路径
      */
-    private void getVideos(String path) {
+    private static void getVideos(String path) {
         File disk = new File(path);
         File[] files = disk.listFiles();
         List<String> list = new ArrayList<String>(Arrays.asList(FORMAT)); // 封装成集合
@@ -49,7 +49,7 @@ public class VideoTime {
      *
      * @param path 本地路径
      */
-    public void getVideoTime(String path) {
+    public static void getVideoTime(String path) {
         videos.clear();
         getVideos(path);
 
@@ -69,7 +69,7 @@ public class VideoTime {
         formatTime(time);
     }
 
-    private void formatTime(Long time) {
+    private static void formatTime(Long time) {
         int hour = (int) (time / 3600);
         int minute = (int) (time % 3600) / 60;
         int second = (int) (time - hour * 3600 - minute * 60);
